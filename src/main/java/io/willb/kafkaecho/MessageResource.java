@@ -13,7 +13,7 @@ import org.jboss.resteasy.annotations.SseElementType;
 @Path("/messages")
 public class MessageResource {
     @Inject
-    @Channel("echo-output-stream") Publisher<String> messages;
+    @Channel("echo-output-topic") Publisher<String> messages;
 
     @GET
     @Path("/stream")
