@@ -12,6 +12,6 @@ public class EchoServer {
     @Outgoing("echo-output-topic")
     @Broadcast
     public String process(String message) {
-        return "just saw " + message;
+        return message;
     }
 }

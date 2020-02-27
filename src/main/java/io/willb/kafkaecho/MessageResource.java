@@ -18,7 +18,7 @@ public class MessageResource {
     @GET
     @Path("/stream")
     @Produces(MediaType.SERVER_SENT_EVENTS)
-    @SseElementType("text/plain")
+    @SseElementType("application/json")
     public Publisher<String> stream() {
         return messages;
     }

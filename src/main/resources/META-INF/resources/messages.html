@@ -14,15 +14,26 @@
 
     <h2>Last message</h2>
     <div class="row">
-        <p class="col-md-12">The last message is <strong><span id="content">N/A</span></strong>.</p>
+        <p class="col-md-12">The last prediction is <strong><span id="predict">N/A</span></strong>.</p>
+        <p class="col-md-12"><div id="pimage"></div></p>
     </div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
     var source = new EventSource("/messages/stream");
+
+    function displayBase64Image(placeholder, base64Image) {
+        placeholder.html('');
+        $('<img>', {
+            src: base64Image
+        }).appendTo(placeholder);
+    }
+
     source.onmessage = function (event) {
-        document.getElementById("content").innerHTML = event.data;
+        message = JSON.parse(event.data);
+        document.getElementById("predict").innerHTML = JSON.stringify(message.predictions);
+        document.getElementById("pimage").innerHTML = '<img src="data:image/jpeg;base64,' + message.image + '"/>';
     };
 </script>
 </html>
